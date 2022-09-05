@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
             alvoImg.gameObject.SetActive(false);
         }
 
-        if (contador % 2 == 0)
+        if ((int)contador % 2 == 0 && contador != 0)
         {
             CriarAlvoRuim();
         }
@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
         _changeColor.b = 1;
         _changeColor.g = 1;
         _changeColor.r = 1;
+        _changeColor.a = 1;
         alvoImg.color = _changeColor;
         if (Physics.Raycast(camera.position, camera.forward, out hitInfo, 100000))
         {
@@ -150,7 +151,7 @@ public class GameManager : MonoBehaviour
         {
             transform.position = raycastHits[0].pose.position;
             transform.rotation = raycastHits[0].pose.rotation;
-            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began && !_comecouJogo)
             {
                 ComecarJogo(raycastHits);
             }
